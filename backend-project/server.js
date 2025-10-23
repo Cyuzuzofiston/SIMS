@@ -5,6 +5,16 @@ const port = 2000
 const app = express()
 const ExcelJS = require('exceljs')
 
+const path = require("path");
+
+// After your routes:
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+
 app.use(cors())
 app.use(express.json())
 
